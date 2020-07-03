@@ -12,7 +12,7 @@
 			<label for="email">Email:</label>
 			<input v-model="user.email">
 		</div>
-		<button type="submit">更新</button>
+		<button type="submit" class="btn btn-secondary"更新</button>
 	</form>
 	</div>
 </div>

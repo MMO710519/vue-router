@@ -1920,17 +1920,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       users: []
     };
   },
+  methods: {
+    userDelete: function userDelete(index, id) {
+      var _this = this;
+
+      axios["delete"]('/api/user/' + id).then(function (response) {
+        _this.users.slice(id, 1);
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    }
+  },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     axios.get('/api/user').then(function (response) {
-      _this.users = response.data.users;
+      _this2.users = response.data.users;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -37673,19 +37686,42 @@ var render = function() {
     _vm._v(" "),
     _c(
       "ul",
-      _vm._l(_vm.users, function(user) {
+      _vm._l(_vm.users, function(user, index) {
         return _c(
           "li",
-          { key: user.id },
+          { key: user.id, staticClass: "mb-1" },
           [
-            _vm._v("\n        " + _vm._s(user.name)),
-            _c("router-link", { attrs: { to: "/user/" + user.id } }, [
-              _vm._v(" 詳細")
-            ]),
+            _vm._v("\n        " + _vm._s(user.name) + "\n        "),
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-success",
+                attrs: { to: "/user/" + user.id }
+              },
+              [_vm._v(" 詳細")]
+            ),
             _vm._v(" "),
-            _c("router-link", { attrs: { to: "/user/" + user.id + "/edit" } }, [
-              _vm._v(" 更新")
-            ])
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { to: "/user/" + user.id + "/edit" }
+              },
+              [_vm._v(" 更新")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "btn btn-danger",
+                on: {
+                  click: function($event) {
+                    return _vm.userDelete(index, user.id)
+                  }
+                }
+              },
+              [_vm._v(" 削除")]
+            )
           ],
           1
         )
@@ -37815,9 +37851,7 @@ var render = function() {
                 }
               }
             })
-          ]),
-          _vm._v(" "),
-          _c("button", { attrs: { type: "submit" } }, [_vm._v("更新")])
+          ])
         ]
       )
     ])

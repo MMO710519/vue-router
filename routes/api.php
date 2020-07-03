@@ -33,3 +33,7 @@ Route::patch('/user/{user}', function(App\User $user,Request $request){
 	return response()->json(['user' => $user]);
 
 });
+Route::delete('/user/{user}',function(App\User $user){
+	$user->delete();
+	return response()->json(['message'=>'delete successfully']);
+});
