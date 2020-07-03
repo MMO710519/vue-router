@@ -1,9 +1,8 @@
 <template>
 <div>
 	<div>
-	<h1>ユーザ更新</h1>
-	<p>User Id: {{ user.id }}</p>
-	<form @submit.prevent="updateUser">
+	<h1>ユーザ作成</h1>
+	<form @submit.prevent="createUser">
 		<div class="form-group">
 			<label for="name">Name:</label>
 			<input v-model="user.name">
@@ -12,41 +11,37 @@
 			<label for="email">Email:</label>
 			<input v-model="user.email">
 		</div>
-		<button type="submit" class="btn btn-secondary">更新</button>
+		<div class="form-group">
+			<label for="password">Password:</label>
+			<input type="password" v-model="user.password">
+		</div>
+		<button type="submit" class="btn btn-secondary">作成</button>
 	</form>
 	</div>
 </div>
 </template>
-
 <script>
 	export default {
 		data(){
 			return {
-				id: this.$route.params.id,
 				user:{
-					id:'',
 					name: '',
-					email:''
+					email:'',
+					password:''
 				}
 			}
 		},
 		methods:{
-			updateUser(){
-				axios.patch('/api/user/' + this.user.id,{
+			createUser(){
+				axios.post('/api/user',{
 					user: this.user
 				})
 				.then(response => {
 					this.user = response.data.user;
-					this.$router.push({ name: 'user_detail' ,params :{ id: this.$route.params.id }})
+					this.$router.push({ name: 'user'})
 				})
 				.catch(error => console.log(error));
 			},
-		},
-		created(){
-			axios.get('/api/user/' + this.id)
-			.then(response => this.user = response.data.user)
-			.catch(erorr => console.log(error));
 		}
-
 	}
 </script>

@@ -33,7 +33,16 @@ Route::patch('/user/{user}', function(App\User $user,Request $request){
 	return response()->json(['user' => $user]);
 
 });
+//ユーザー削除
 Route::delete('/user/{user}',function(App\User $user){
 	$user->delete();
 	return response()->json(['message'=>'delete successfully']);
+});
+//ユーザー作成
+Route::post('/user', function(Request $request){
+
+	$user = App\User::create($request->user);
+
+	return response()->json(['user' => $user]);
+
 });
