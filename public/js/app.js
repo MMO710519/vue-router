@@ -1923,6 +1923,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2024,6 +2043,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -37746,6 +37766,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "container" },
     [
       _c("h1", [_vm._v("ユーザー一覧")]),
       _vm._v(" "),
@@ -37754,56 +37775,84 @@ var render = function() {
         { staticClass: "btn btn-secondary", attrs: { to: "/user/create" } },
         [_vm._v("ユーザー作成")]
       ),
+      _c("br"),
       _vm._v(" "),
-      _c(
-        "ul",
-        _vm._l(_vm.users, function(user, index) {
-          return _c(
-            "li",
-            { key: user.id, staticClass: "mb-1" },
-            [
-              _vm._v("\n        " + _vm._s(user.name) + "\n        "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "btn btn-success",
-                  attrs: { to: "/user/" + user.id }
-                },
-                [_vm._v(" 詳細")]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "btn btn-primary",
-                  attrs: { to: "/user/" + user.id + "/edit" }
-                },
-                [_vm._v(" 更新")]
-              ),
-              _vm._v(" "),
-              _c(
-                "span",
-                {
-                  staticClass: "btn btn-danger",
-                  on: {
-                    click: function($event) {
-                      return _vm.userDelete(index, user.id)
-                    }
-                  }
-                },
-                [_vm._v(" 削除")]
-              )
-            ],
-            1
-          )
-        }),
-        0
-      )
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "alt-table-responsive" }, [
+                _c("table", { staticClass: "table table-bordered" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.users, function(user, index) {
+                      return _c("tr", { key: user.id, staticClass: "mb-1" }, [
+                        _c("td", [_vm._v(_vm._s(user.name))]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "btn btn-success",
+                                attrs: { to: "/user/" + user.id }
+                              },
+                              [_vm._v(" 詳細")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: { to: "/user/" + user.id + "/edit" }
+                              },
+                              [_vm._v(" 更新")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "btn btn-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.userDelete(index, user.id)
+                                  }
+                                }
+                              },
+                              [_vm._v(" 削除")]
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [_c("th", [_vm._v("User")]), _vm._v(" "), _c("th")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -37946,17 +37995,27 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", [
-      _c("h1", [_vm._v("ユーザー詳細")]),
-      _vm._v(" "),
-      _c("ul", [
-        _c("p", [_vm._v("User Id: " + _vm._s(_vm.user.id))]),
+    _c(
+      "div",
+      [
+        _c("h1", [_vm._v("ユーザー詳細")]),
         _vm._v(" "),
-        _c("p", [_vm._v("User Name: " + _vm._s(_vm.user.name))]),
+        _c("ul", [
+          _c("p", [_vm._v("User Id: " + _vm._s(_vm.user.id))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("User Name: " + _vm._s(_vm.user.name))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("User Email: " + _vm._s(_vm.user.email))])
+        ]),
         _vm._v(" "),
-        _c("p", [_vm._v("User Email: " + _vm._s(_vm.user.email))])
-      ])
-    ])
+        _c(
+          "router-link",
+          { staticClass: "btn btn-secondary", attrs: { to: "/user" } },
+          [_vm._v("一覧に戻る")]
+        )
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []

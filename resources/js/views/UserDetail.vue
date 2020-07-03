@@ -7,6 +7,7 @@
       <p>User Name: {{ user.name }}</p>
       <p>User Email: {{ user.email }}</p>
     </ul>
+    <router-link class="btn btn-secondary" to="/user">一覧に戻る</router-link>
   </div>
 </div>
 </template>
